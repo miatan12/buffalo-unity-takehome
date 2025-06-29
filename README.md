@@ -18,19 +18,23 @@ Enemies spawn with randomized stats and colors that depend on the time of day (M
 
 ## Project Layout
 
+```bash
 Assets/
 ├── Scripts/
 │ ├── GameManager.cs # Picks time of day, controls environment & enemy spawning
 │ ├── Enemy.cs # Networked enemy logic, stat syncing, label display
 │ ├── EnemyType.cs # ScriptableObject blueprint for enemy data
 │ └── NetworkManagerUI.cs # Simple UI logic for restarting host/client/server
-├── ScriptableObjects/ # Enemy types (customizable in the editor)
+│
+├── ScriptableObjects/ # Enemy types (customizable in the inspector)
+│ └── [EnemyType assets].asset
+│
 ├── Prefabs/
 │ └── EnemyBase.prefab # Enemy prefab with Netcode components + label
+│
 ├── Scenes/
 │ └── MainScene.unity # Entry scene
-
----
+```
 
 ## How to Try It Out
 
