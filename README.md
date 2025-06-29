@@ -90,4 +90,4 @@ MIT — feel free to use, remix, and build on this however you'd like.
 
 ## Author
 
-Built by [Your Name] as a small demo project for multiplayer spawning, environment variation, and ScriptableObject-driven design. Let me know if you want to collaborate or build it out into a full game.
+Built by Mia Tan as a small demo project for multiplayer spawning, environment variation, and ScriptableObject-driven design. Let me know if you want to collaborate or build it out into a full game.
