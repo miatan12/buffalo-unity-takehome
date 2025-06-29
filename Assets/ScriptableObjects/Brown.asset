@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5a7703fa1b04f9d9a9b0fa03f6f050, type: 3}
+  m_Name: Brown
+  m_EditorClassIdentifier: 
+  enemyName: Brown
+  enemyClass: 0
+  attackPower: 1
+  health: 2
+  speed: 1
+  spawnRate: 0.3
+  color: {r: 0.5566038, g: 0.32283917, b: 0.16540584, a: 0}
+  material: {fileID: 2100000, guid: 09a944f8e8ac24d4387c87a51dd0d57b, type: 2}
