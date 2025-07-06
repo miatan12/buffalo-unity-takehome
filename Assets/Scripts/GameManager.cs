@@ -136,7 +136,15 @@ public class GameManager : NetworkBehaviour
 
     private void SpawnFiltered(Transform point, System.Predicate<EnemyType> filter)
     {
+        // First apply the initial filter (e.g. "Only Archers", "Only Red", etc.)
         var candidates = allEnemyTypes.FindAll(filter);
+
+        // **Exclude Assassins entirely if it's Afternoon
+        if (syncedTimeOfDay.Value == TimeOfDay.Afternoon)
+        {
+            candidates.RemoveAll(e => e.enemyClass == EnemyClass.Assassin);
+        }
+
         Debug.Log($"[GameManager] Found {candidates.Count} valid enemies at {point.name}");
 
         var filtered = new List<EnemyType>();
@@ -160,7 +168,6 @@ public class GameManager : NetworkBehaviour
         var enemy = Instantiate(enemyPrefab, point.position, Quaternion.identity);
         enemy.GetComponent<NetworkObject>().Spawn();
         enemy.GetComponent<Enemy>().SetupFromServer(chosen);
-        enemy.GetComponent<Renderer>().material.color = chosen.color;
         enemy.GetComponent<Enemy>().SetLabelColor(GetLabelColorForTime());
     }
 

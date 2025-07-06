@@ -32,24 +32,7 @@ public class Enemy : NetworkBehaviour
     {
         Debug.Log("[Enemy] OnNetworkSpawn");
 
-        if (IsServer)
-        {
-            var clone = enemyData.Clone();
-            clone.health += Random.Range(0, 5);
-            clone.attackPower += Random.Range(0, 5);
-            clone.speed += Random.Range(0, 3);
-
-            hp.Value = clone.health;
-            attack.Value = clone.attackPower;
-            speed.Value = (int)clone.speed;
-            enemyName.Value = clone.enemyName;
-            syncedColor.Value = clone.color;
-
-            var gm = FindObjectOfType<GameManager>();
-            labelColor.Value = gm ? gm.GetLabelColorForTime() : Color.black;
-
-            Debug.Log($"[Enemy][Server] Assigned: {enemyName.Value} | HP: {hp.Value} | ATK: {attack.Value} | SPD: {speed.Value}");
-        }
+        // **Removed random stat mutation from OnNetworkSpawn — GameManager handles this
 
         // Sync UI and visuals whenever values change
         hp.OnValueChanged += (_, _) => UpdateLabel();
@@ -67,13 +50,14 @@ public class Enemy : NetworkBehaviour
 
     /// <summary>
     /// Called by the server after instantiating this enemy.
-    /// Assigns randomized values to this instance.
+    /// Assigns final values already adjusted by GameManager.
     /// </summary>
     public void SetupFromServer(EnemyType type)
     {
-        hp.Value = type.health + Random.Range(0, 5);
-        attack.Value = type.attackPower + Random.Range(0, 5);
-        speed.Value = (int)(type.speed + Random.Range(0, 3));
+        // ✅ Use already-mutated values from GameManager (do not add random offsets here)
+        hp.Value = type.health;
+        attack.Value = type.attackPower;
+        speed.Value = (int)type.speed;
         enemyName.Value = type.enemyName;
 
         if (IsServer) syncedColor.Value = type.color;
